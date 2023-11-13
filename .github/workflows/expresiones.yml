@@ -1,0 +1,30 @@
+name: Expressions
+on: 
+  push: 
+    branches: # Enabled branches to build environments
+      - 'features/*'
+      - 'bugfixes/*'
+  pull_request:
+    types: [opened, closed]
+  release: 
+    types: [published]
+
+jobs: 
+  deploy_san: 
+    if: github.event.push
+    runs-on: ubuntu-latest
+    steps:
+      - name: deploy
+        run: echo "Deploying in sandbox environment"
+  deploy_dev: 
+    if: github.event.pull_request
+    runs-on: ubuntu-latest
+    steps:
+      - name: deploy
+        run: echo "Deploying in development environment"
+  deploy_prod: 
+    if: github.event.release
+    runs-on: ubuntu-latest
+    steps:
+      - name: deploy
+        run: echo "Deploying in production environment"
