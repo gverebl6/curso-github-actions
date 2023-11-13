@@ -1,0 +1,11 @@
+name: Triggers
+on: 
+  push: 
+    branches: # For main and feature branches
+      - 'main'
+      - 'features/*'
+  pull_request:
+    types: [opened, closed]
+  schedule:
+    - cron: '0 15 * * 0'  # Run at 3PM Sundays
+    
